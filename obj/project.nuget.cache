@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "pBPSz+PDuT4=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Alan\\Documents\\FexFlasher\\FexFlasher.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Alan\\.nuget\\packages\\system.codedom\\9.0.8\\system.codedom.9.0.8.nupkg.sha512",
+    "C:\\Users\\Alan\\.nuget\\packages\\system.management\\9.0.8\\system.management.9.0.8.nupkg.sha512"
+  ],
+  "logs": []
+}

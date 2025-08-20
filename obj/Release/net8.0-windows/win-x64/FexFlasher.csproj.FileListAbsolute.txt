@@ -1,0 +1,4 @@
+C:\Users\Alan\Documents\FexFlasher\obj\Release\net8.0-windows\win-x64\FexFlasher.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alan\Documents\FexFlasher\obj\Release\net8.0-windows\win-x64\FexFlasher.AssemblyInfoInputs.cache
+C:\Users\Alan\Documents\FexFlasher\obj\Release\net8.0-windows\win-x64\FexFlasher.AssemblyInfo.cs
+C:\Users\Alan\Documents\FexFlasher\obj\Release\net8.0-windows\win-x64\FexFlasher.csproj.CoreCompileInputs.cache
