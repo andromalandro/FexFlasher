@@ -15,7 +15,7 @@ Download the latest release from the [Releases page](../../releases).
 
 ---
 ## Special Thanks
-Special thanks to the muOS devs (https://muos.dev/) on discord who helped me out and explained how things work on my 35XX H, also a shoutout to u/randomcoder_67 on reddit who has this amazing guide to do all the proces on linux https://www.reddit.com/user/randomcoder_67/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button.
+Special thanks to the muOS devs (https://muos.dev/) on discord who helped me out and explained how things work on my 35XX H, also a shoutout to u/randomcoder_67 on reddit who has this amazing guide to do all the proces on linux https://randomcoder67.github.io/wiki/other/muos-rg35xx-screen-fix.html.
 
 ## Support Me ❤️
 If you find this project helpful, consider supporting me:
