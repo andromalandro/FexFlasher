@@ -1,16 +1,18 @@
 name: Build and Release FexFlasher
+permissions:
+  contents: write  # Needed to create releases
 
 on:
   push:
     tags:
-      - "v*"  # Trigger workflow on tags like v1.0.0
+      - "v*"  # Trigger only on version tags like v1.0.0
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-      # 1️⃣ Checkout the code
+      # 1️⃣ Checkout code
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -18,25 +20,36 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '7.0.x'  # Change if you use another version
+          dotnet-version: '7.0.x'  # Use your project’s .NET version
 
-      # 3️⃣ Restore dependencies
+      # 3️⃣ Cache NuGet packages for faster restore
+      - name: Cache NuGet packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: nuget-
+
+      # 4️⃣ Restore dependencies
       - name: Restore dependencies
         run: dotnet restore FexFlasher.csproj
 
-      # 4️⃣ Build project
+      # 5️⃣ Build project in Release mode
       - name: Build project
         run: dotnet build FexFlasher.csproj -c Release --no-restore
 
-      # 5️⃣ Publish build to get .exe
+      # 6️⃣ Publish project to get .exe
       - name: Publish project
         run: dotnet publish FexFlasher.csproj -c Release -o published --no-restore
 
-      # 6️⃣ Create zip of the published folder
-      - name: Create zip
-        run: Compress-Archive -Path published\* -DestinationPath FexFlasher-${{ github.ref_name }}.zip
+      # 7️⃣ Create zip including .exe and .fex
+      - name: Create zip with exe and fex
+        run: |
+          $zipPath = "FexFlasher-${{ github.ref_name }}.zip"
+          $itemsToZip = @("published\*", "files\*.fex")  # Adjust path if .fex is elsewhere
+          Compress-Archive -Path $itemsToZip -DestinationPath $zipPath -Force
 
-      # 7️⃣ Upload zip to GitHub Release
+      # 8️⃣ Upload zip to GitHub Release
       - name: Upload release
         uses: softprops/action-gh-release@v1
         with:
