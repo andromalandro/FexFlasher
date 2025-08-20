@@ -1,38 +1,45 @@
-name: Build and Release
+name: Build and Release FexFlasher
 
 on:
   push:
     tags:
-      - "v*"   # Trigger workflow on tags like v1.0.0
+      - "v*"  # Trigger workflow on tags like v1.0.0
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout code
+      # 1️⃣ Checkout the code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
+      # 2️⃣ Setup .NET
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '7.0.x'  # Change if using another version
+          dotnet-version: '7.0.x'  # Change if you use another version
 
+      # 3️⃣ Restore dependencies
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore FexFlasher.csproj
 
+      # 4️⃣ Build project
       - name: Build project
-        run: dotnet build -c Release
+        run: dotnet build FexFlasher.csproj -c Release --no-restore
 
-      - name: Publish build (to get exe)
-        run: dotnet publish -c Release -o published
+      # 5️⃣ Publish build to get .exe
+      - name: Publish project
+        run: dotnet publish FexFlasher.csproj -c Release -o published --no-restore
 
+      # 6️⃣ Create zip of the published folder
       - name: Create zip
-        run: Compress-Archive -Path published\* -DestinationPath MyApp-${{ github.ref_name }}.zip
+        run: Compress-Archive -Path published\* -DestinationPath FexFlasher-${{ github.ref_name }}.zip
 
+      # 7️⃣ Upload zip to GitHub Release
       - name: Upload release
         uses: softprops/action-gh-release@v1
         with:
-          files: MyApp-${{ github.ref_name }}.zip
+          files: FexFlasher-${{ github.ref_name }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
