@@ -1,6 +1,9 @@
 # FexFlasher
 
 A Windows tool to flash `.fex` firmware files to SD cards. After been affected by the "Horixontal lines appearing on screen" issue I reached the muOS devs and they helped me out trying to fix it, this apparently stems for some devices having a panel that doesn’t like the timings used by muOS. I had to extract files from the sd card, change some values and then reflash the card, all on Linux, got me thinking that most people are probably using Windows and wanted to figure out a way to make the process easy. DISCLAIMER: this has only been tested on my 35XX H using Windows 11, it should work on the plus as far as I understand, the zip file has the necessary .fex file I extracted from my device. Changing screen timings can potentially DAMAGE your screen or BRICK your muOS installation, back up your device and use the tool at your own risk. My testing was, flashed muOS on an sd card, wait for the lines to show, apply the new flash with the tool and check to see if the issue was fixed, it fixed 2 sd cards I flashed.
+![Example Image 1](example1.webp)
+![Example Image 2](example2.webp)
+![Example Image 3](example3.jpeg)
 
 ## Installation
 Download the latest release from the [Releases page](../../releases).
