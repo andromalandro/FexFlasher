@@ -46,7 +46,7 @@ jobs:
       - name: Create zip with exe and fex
         run: |
           $zipPath = "FexFlasher-${{ github.ref_name }}.zip"
-          $itemsToZip = @("published\*", "files\*.fex")  # Adjust path if .fex is elsewhere
+          $itemsToZip = @("published\*", "files\*boot_package.fex")  # Adjust path if .fex is elsewhere
           Compress-Archive -Path $itemsToZip -DestinationPath $zipPath -Force
 
       # 8️⃣ Upload zip to GitHub Release
